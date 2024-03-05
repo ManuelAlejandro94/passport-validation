@@ -6,6 +6,7 @@ import app.netlify.maav.passportvalidation.Model.Passport;
 import app.netlify.maav.passportvalidation.Model.Zml;
 import app.netlify.maav.passportvalidation.Service.PassportService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +21,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("api/v1/passport-validation")
 public class PassportController {
 
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
-
     @Autowired
     PassportService service;
 
     @PostMapping("/zlm")
     public Zml generateZLM(@Valid @RequestBody Passport passport) {
-        
+
         return service.generateZml(passport);
     }
     
